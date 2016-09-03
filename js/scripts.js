@@ -20,6 +20,34 @@
 
         pageHeader.appendChild(studentSearch);
 
+        var studentsPerPage = 10;
+        var currentPage = 1;
+        
+        var students = document.getElementsByClassName('student-item');
+        var numberOfPages = Math.ceil(students.length / studentsPerPage);
+
+        var pagination = document.createElement('div');
+        pagination.className = 'pagination';
+        var paginationList = document.createElement('ul');
+
+        var pageLink;
+        var listItem;
+
+        for (var i = 1; i <= numberOfPages; i++) {
+            pageLink = document.createElement('a');
+            pageLink.innerText = i;
+
+            if (i === currentPage) {
+                pageLink.className = 'active';
+            }
+            
+            listItem = document.createElement('li');
+            listItem.appendChild(pageLink);
+            paginationList.appendChild(listItem);
+        }
+        
+        pagination.appendChild(paginationList);
+        page.appendChild(pagination);
     }
    
     initPagination();
