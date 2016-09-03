@@ -13,9 +13,14 @@
     function setVisibility() {
         var students = document.getElementsByClassName('student-item');
 
-        for (var i = (currentPage - 1) * studentsPerPage; i < currentPage * studentsPerPage; i++) {
-            students[i].classList.toggle('visible');
+        for (var i = 0; i < students.length; i++) {
+             if ((currentPage - 1) * studentsPerPage <= i && i < currentPage * studentsPerPage) {
+                 students[i].classList.add('visible');
+             } else {
+                 students[i].classList.remove('visible');
+             }
         }
+        
     }
 
     // Add the filter input 
@@ -72,4 +77,17 @@
     initPagination();
     setVisibility();
 
+    var pageLinks = document.getElementsByClassName('pagination')[0].getElementsByTagName('a');
+  
+    for (var i = 0; i < pageLinks.length; i++) {
+        pageLinks[i].addEventListener('click', function () {
+            currentPage = this.innerText;
+            setVisibility();
+
+            for (var j = 0; j < pageLinks.length; j++) {
+                pageLinks[j].classList.remove('active');
+            }
+            this.classList.add('active');
+        });
+    }
 }();

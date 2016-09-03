@@ -46,9 +46,14 @@ body{
 .student-list{}
 
   .student-item{
+    display: none;
     margin: 0 0 20px 0;
     padding: 0 0 20px 0;
     border-bottom: 1px solid #eaeaea;
+  }
+  
+  .student-item.visible {
+    display: block;
   }
 
     .student-details{
@@ -110,6 +115,7 @@ body{
       padding: 3px 8px;
       text-decoration: none;
       color: #4ba6c3;
+      cursor: pointer;
     }
 
     .pagination li a.active,
