@@ -2,6 +2,22 @@
 +function(){
     'use strict';
 
+    var studentsPerPage = 10;
+    var currentPage = 1;
+
+    function getStudentsNumber() {
+        var students = document.getElementsByClassName('student-item');
+        return students.length;
+    }
+
+    function setVisibility() {
+        var students = document.getElementsByClassName('student-item');
+
+        for (var i = (currentPage - 1) * studentsPerPage; i < currentPage * studentsPerPage; i++) {
+            students[i].classList.toggle('visible');
+        }
+    }
+
     // Add the filter input 
     function initFilter() {
         var studentSearch = document.createElement('div');
@@ -24,11 +40,7 @@
 
     // Add the pagination
     function initPagination() {
-        var studentsPerPage = 10;
-        var currentPage = 1;
-        
-        var students = document.getElementsByClassName('student-item');
-        var numberOfPages = Math.ceil(students.length / studentsPerPage);
+        var numberOfPages = Math.ceil(getStudentsNumber() / studentsPerPage);
 
         var pagination = document.createElement('div');
         pagination.className = 'pagination';
@@ -58,5 +70,6 @@
 
     initFilter();
     initPagination();
-    
+    setVisibility();
+
 }();
